@@ -1,47 +1,33 @@
-# TOOLS.md - Local Notes
-
-Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
+# TOOLS.md - Environment & Tooling Reference
 
 ## Environment
 
 - **Host:** Linux 5.15.178 (arm64)
 - **Node:** v24.2.0
 - **OpenClaw:** installed via npm
-- **CLI tools available:** `clawhub`, `git`, `curl`, `wget`
 - **Workspace:** `/root/.openclaw/workspace`
 - **Self-improving data:** `~/self-improving/`
 - **Proactivity data:** `~/proactivity/`
 
+## CLI Tools Available
+
+| Tool | Purpose |
+|------|---------|
+| `clawhub` | Skill marketplace CLI |
+| `git` | Version control |
+| `curl` | HTTP requests |
+| `wget` | Downloads |
+
 ## ClawHub CLI
 
 ```bash
-# Search skills
-clawhub search "query"
-
-# Install a skill
-clawhub install <skill-name>
-
-# Update all skills
-clawhub update --all
-
-# List installed skills
-clawhub list
-
-# Registry: https://clawhub.com (default)
+clawhub search "topic"     # Find skills
+clawhub install <skill>    # Install
+clawhub update --all       # Update all
+clawhub list               # ⚠️ Reports 0 (CLI bug — see SKILLS.md)
 ```
 
-## Installed Skills
-
-| Skill | Source | Location |
-|-------|--------|----------|
-| clawflow | Built-in | `/usr/local/lib/node_modules/openclaw/skills/clawflow` |
-| clawflow-inbox-triage | Built-in | `.../skills/clawflow-inbox-triege` |
-| healthcheck | Built-in | `.../skills/healthcheck` |
-| node-connect | Built-in | `.../skills/node-connect` |
-| skill-creator | Built-in | `.../skills/skill-creator` |
-| weather | Built-in | `.../skills/weather` |
-| self-improving | ClawHub | `/root/.openclaw/skills/self-improving` |
-| proactivity | ClawHub | `/root/.openclaw/skills/proactivity` |
+For full skills inventory: **see [SKILLS.md](./SKILLS.md)**
 
 ## TTS
 

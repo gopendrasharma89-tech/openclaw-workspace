@@ -1,6 +1,6 @@
 # ⚡ Kavi's Workspace
 
-OpenClaw workspace — powered by self-improvement and proactivity.
+OpenClaw workspace — self-improvement + proactivity powered.
 
 ---
 
@@ -21,57 +21,47 @@ workspace/
 └── scripts/           # Reusable scripts
 ```
 
-External data (~ = /root/):
+External data (`~` = `/root/`):
 ```
-~/self-improving/      # HOT/WARM/COLD execution memory
-~/proactivity/         # Proactive state, patterns, session tracking
+~/self-improving/      # Execution improvement memory (corrections, domains, projects)
+~/proactivity/         # Proactive operating state (patterns, session tracking, follow-ups)
+~/.openclaw/skills/    # ClawHub skill installations (47 marketplace + 6 built-in)
 ```
 
-## 🔧 Skills
+---
 
-| Skill | Source | Purpose |
-|-------|--------|---------|
-| self-improving | ClawHub | Learn from corrections, self-reflect, compound lessons |
-| proactivity | ClawHub | Anticipate needs, reverse prompt, self-heal, recover context |
-| weather | Built-in | Forecasts via wttr.in / Open-Meteo |
-| healthcheck | Built-in | Host security & risk checks |
-| skill-creator | Built-in | Create/improve/audit skills |
-| node-connect | Built-in | Node pairing diagnostics |
-| clawflow | Built-in | Task orchestration & detached workflows |
-| clawflow-inbox-triage | Built-in | Inbox triage routing |
+## 🔧 Skills Summary
+
+**47 ClawHub marketplace + 6 built-in = 53 total capabilities**
+
+Top categories: Intelligence (4) | Self-Improvement (3) | Writing (3) | Research (3) | Finance (1) | Health (4) | Media (3) | Task Management (4) | System & DevOps (4) | Security/DB/API (5)
+
+*Full list: see SKILLS.md*
+
+**⚠️ Known:** `clawhub list` reports 0 skills (CLI bug), but all 47 exist in `~/.openclaw/skills/` and work fine.
+
+---
+
+## 📊 Memory Systems
+
+| System | Files | Purpose |
+|--------|-------|---------|
+| **Factual Continuity** | `memory/YYYY-MM-DD.md` / `MEMORY.md` | Events, decisions, context |
+| **Execution Improvement** | `~/self-improving/corrections.md`, `~/self-improving/domains/`, `~/self-improving/projects/` | How to do things better |
+| **Proactive Operating** | `~/proactivity/memory.md`, `~/proactivity/session-state.md` | Anticipate needs, track work |
+
+---
 
 ## 🚀 Quick Commands
 
 ```bash
-# Skills
-clawhub search "topic"
-clawhub install <skill>
-clawhub update --all
-clawhub list
-
-# Workspace
-git -C /root/.openclaw/workspace status
-git -C /root/.openclaw/workspace log --oneline -5
+clawhub search "topic"    # Find skills
+clawhub install <skill>   # Install
+clawhub update --all      # Update all
+clawhub list              # ⚠️ Reports 0 (CLI bug)
+ls ~/.openclaw/skills/    # ✅ Actual 47 skills
 ```
-
-## 📝 Memory Systems
-
-**Factual Continuity** (events, decisions, context):
-- `memory/YYYY-MM-DD.md` → daily raw logs
-- `MEMORY.md` → curated long-term memory
-
-**Execution Improvement** (how to do things better):
-- `~/self-improving/memory.md` → HOT tier (always load)
-- `~/self-improving/corrections.md` → what I got wrong
-- `~/self-improving/domains/` → domain-specific lessons
-- `~/self-improving/projects/` → project-specific patterns
-
-**Proactive Operating State** (anticipate & follow through):
-- `~/proactivity/memory.md` → durable boundaries & preferences
-- `~/proactivity/session-state.md` → current objective, blocker, next move
-- `~/proactivity/patterns.md` → reusable proactive wins
-- `~/proactivity/log.md` → recent proactive actions
 
 ---
 
-_Born: 2026-04-03 | Last upgraded: 2026-04-03_
+_Born: 2026-04-03 | Last upgraded: 2026-04-04_

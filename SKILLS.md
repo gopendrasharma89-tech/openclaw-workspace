@@ -1,152 +1,126 @@
 # ⚡ Kavi's Skills Dashboard
 
-Complete inventory — marketplace + builtin. Categorized by purpose.
+Complete inventory — 47 ClawHub marketplace + 6 built-in = 53 capabilities.
 
-_Last updated: 2026-04-04 06:00 UTC_
-
----
-
-## 📦 Installed ClawHub Skills (47 total)
-
-### 🧠 Intelligence & Reasoning (4)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **adaptive-reasoning** | 1.0.0 | Adjust reasoning approach per task type |
-| **deep-thinking** | 1.0.0 | Enhanced reasoning for complex/ambiguous problems |
-| **intelligence-suite** | 1.0.3 | Combined cognitive & intelligence tools |
-| **claw-smart-context** | 1.0.0 | Smart context — load only what's needed |
-
-### 🔄 Self-Improvement & Behavior (3)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **self-improving** | 1.2.16 | Corrections → lessons, HOT/WARM/COLD memory tiers |
-| **proactivity** | 1.0.1 | Anticipate needs, reverse prompting, self-healing |
-| **context-hygiene** | 1.2.0 | Keep session context clean and focused |
-
-### ⚡ Execution & Productivity (5)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **task-decomposer** | 1.0.0 | Break complex requests → subtasks |
-| **afrexai-productivity-system** | 1.0.0 | Productivity OS — energy mapping, 1-3-5 framework |
-| **communication-skill** | 0.1.0 | Better communication patterns, clarity, tone |
-| **plan-my-day** | 1.0.0 | Daily planning & task organization |
-| **calcurse** | 1.0.0 | Terminal-based calendar & scheduler |
-
-### ✍️ Writing & Content (3)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **human-writing** | 1.0.0 | Natural, human-like writing |
-| **content-writer** | 1.0.0 | Content creation — blogs, social, marketing |
-| **markdown-formatter** | 1.0.0 | Markdown formatting & cleanup |
-
-### 🔍 Research & Translation (3)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **web-scraping** | 1.0.0 | General web scraping |
-| **web-scraper-jina** | 1.0.1 | Web scraping via Jina Reader API |
-| **universal-translate** | 1.0.0 | Multi-language translation |
-
-### 📧 Email (2)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **email-management** | 1.0.0 | Email triaging, summaries |
-| **porteden-email** | 1.0.4 | Secure email (Gmail/Outlook) |
-
-### 📊 Finance & Budgeting (1)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **afrexai-budget-planner** | 1.0.0 | Budget planning, expense tracking |
-
-### 🏥 Health & Lifestyle (5)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **health** | 1.0.1 | Health & wellness guidance |
-| **habit-tracker** | 1.0.0 | Daily habit tracking |
-| **weather** | 1.0.0 | Weather forecasts |
-| **camera** | 1.0.0 | Camera & photo capabilities |
-| **social-intelligence** | 1.1.1 | Social media insights |
-
-### 🎵 Media (3)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **spotify-player** | 1.0.0 | Spotify music control |
-| **spotify** | 1.0.0 | Spotify integration (extended) |
-| **ffmpeg** | 1.0.0 | Video/audio processing & editing |
-
-### 📝 Knowledge & Project Management (5)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **obsidian** | 1.0.0 | Obsidian vault management |
-| **para-second-brain** | 2.0.1 | PARA method — 2nd brain organization |
-| **notion** | 1.0.0 | Notion workspace integration |
-| **trello** | 1.0.0 | Kanban board management |
-| **document-pro** | 1.0.0 | Document handling & processing |
-
-### ✅ Task Management (1)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **todoist-rs** | 1.0.1 | Todoist task management |
-
-### 💻 System & DevOps (6)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **system-resource-monitor** | 1.0.0 | Monitor CPU, memory, disk, network |
-| **system-info** | 1.0.0 | System diagnostics |
-| **docker-essentials** | 1.0.0 | Docker container management |
-| **ssh-essentials** | 1.0.0 | SSH & remote access |
-| **git-essentials** | 1.0.0 | Git version control |
-| **screenshot** | 1.0.1 | Screenshot capture |
-
-### 🔐 Security (2)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **openssl** | 1.0.0 | OpenSSL crypto tools |
-| **encryption** | 1.0.0 | Encryption & decryption utilities |
-
-### 🗄️ Database (2)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **sqlite** | 1.0.0 | SQLite database management |
-| **sql-toolkit** | 1.0.0 | SQL operations toolkit |
-
-### 🔌 API & Testing (1)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **api-tester** | 1.0.0 | API testing & debugging |
-
-### 🎤 Voice & Speech (1)
-| Skill | Version | Purpose |
-|-------|---------|---------|
-| **local-whisper** | 1.0.0 | Local speech-to-text (transcription) |
+_Last updated: 2026-04-04 08:42 UTC_
 
 ---
 
-## 🏗️ Built-in (OpenClaw, 6)
+## 🧠 Intelligence & Reasoning
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [adaptive-reasoning](../.openclaw/skills/adaptive-reasoning/) | ClawHub | Per-task reasoning approach |
+| [deep-thinking](../.openclaw/skills/deep-thinking/) | ClawHub | Complex/ambiguous problems |
+| [intelligence-suite](../.openclaw/skills/intelligence-suite/) | ClawHub | Combined cognitive tools |
+| [claw-smart-context](../.openclaw/skills/claw-smart-context/) | ClawHub | Load only what's needed |
+| context-hygiene | ClawHub | Keep session context clean |
+
+## 🔄 Self-Improvement & Behavior
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [self-improving](../.openclaw/skills/self-improving/) | ClawHub | Corrections → lessons, memory tiers |
+| [proactivity](../.openclaw/skills/proactivity/) | ClawHub | Anticipate needs, reverse prompting |
+
+## 📋 Task & Planning
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [task-decomposer](../.openclaw/skills/task-decomposer/) | ClawHub | Break requests → subtasks |
+| [afrexai-productivity-system](../.openclaw/skills/afrexai-productivity-system/) | ClawHub | Productivity OS |
+| [plan-my-day](../.openclaw/skills/plan-my-day/) | ClawHub | Daily planning |
+| [calcurse](../.openclaw/skills/calcurse/) | ClawHub | Terminal calendar |
+| [todoist-rs](../.openclaw/skills/todoist-rs/) | ClawHub | Todoist tasks |
+
+## ✍️ Writing & Content
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [human-writing](../.openclaw/skills/human-writing/) | ClawHub | Natural, human-like writing |
+| [content-writer](../.openclaw/skills/content-writer/) | ClawHub | Blogs, social, marketing |
+| [markdown-formatter](../.openclaw/skills/markdown-formatter/) | ClawHub | Markdown cleanup |
+| [communication-skill](../.openclaw/skills/communication-skill/) | ClawHub | Better communication patterns |
+
+## 🔍 Research & Knowledge
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [web-scraping](../.openclaw/skills/web-scraping/) | ClawHub | General scraping |
+| [web-scraper-jina](../.openclaw/skills/web-scraper-jina/) | ClawHub | Jina Reader API |
+| [universal-translate](../.openclaw/skills/universal-translate/) | ClawHub | Multi-language translation |
+| [obsidian](../.openclaw/skills/obsidian/) | ClawHub | Vault management |
+| [para-second-brain](../.openclaw/skills/para-second-brain/) | ClawHub | PARA method |
+| [notion](../.openclaw/skills/notion/) | ClawHub | Notion integration |
+| [document-pro](../.openclaw/skills/document-pro/) | ClawHub | Document processing |
+
+## 📧 Email
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [email-management](../.openclaw/skills/email-management/) | ClawHub | Triage & summaries |
+| [porteden-email](../.openclaw/skills/porteden-email/) | ClawHub | Secure Gmail/Outlook |
+
+## 📊 Finance & Lifestyle
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [afrexai-budget-planner](../.openclaw/skills/afrexai-budget-planner/) | ClawHub | Budget & expenses |
+| [health](../.openclaw/skills/health/) | ClawHub | Wellness guidance |
+| [habit-tracker](../.openclaw/skills/habit-tracker/) | ClawHub | Habit tracking |
+| [social-intelligence](../.openclaw/skills/social-intelligence/) | ClawHub | Social media insights |
+| [camera](../.openclaw/skills/camera/) | ClawHub | Camera & photos |
+
+## 🎵 Media
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [spotify-player](../.openclaw/skills/spotify-player/) | ClawHub | Music control |
+| [spotify](../.openclaw/skills/spotify/) | ClawHub | Spotify integration |
+| [ffmpeg](../.openclaw/skills/ffmpeg/) | ClawHub | Video/audio editing |
+
+## ✅ Task & Project Management
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [trello](../.openclaw/skills/trello/) | ClawHub | Kanban boards |
+
+## 💻 System & DevOps
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [system-resource-monitor](../.openclaw/skills/system-resource-monitor/) | ClawHub | CPU/mem/disk monitoring |
+| [system-info](../.openclaw/skills/system-info/) | ClawHub | System diagnostics |
+| [docker-essentials](../.openclaw/skills/docker-essentials/) | ClawHub | Docker containers |
+| [ssh-essentials](../.openclaw/skills/ssh-essentials/) | ClawHub | Remote access |
+| [git-essentials](../.openclaw/skills/git-essentials/) | ClawHub | Git workflow |
+| [screenshot](../.openclaw/skills/screenshot/) | ClawHub | Screenshot capture |
+
+## 🔐 Security & Crypto
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [openssl](../.openclaw/skills/openssl/) | ClawHub | Crypto tools |
+| [encryption](../.openclaw/skills/encryption/) | ClawHub | Encryption utilities |
+
+## 🗄️ Database & API
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [sqlite](../.openclaw/skills/sqlite/) | ClawHub | SQLite DB |
+| [sql-toolkit](../.openclaw/skills/sql-toolkit/) | ClawHub | SQL operations |
+| [api-tester](../.openclaw/skills/api-tester/) | ClawHub | API testing |
+
+## 🎤 Voice
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [local-whisper](../.openclaw/skills/local-whisper/) | ClawHub | Local speech-to-text |
+
+---
+
+## 🏗️ Built-in OpenClaw
 | Skill | Purpose |
 |-------|---------|
-| **weather** | Forecasts via wttr.in |
-| **healthcheck** | Host security & risk checks |
-| **skill-creator** | Create/improve skills |
-| **node-connect** | Node pairing diagnostics |
-| **clawflow** | Task orchestration |
-| **clawflow-inbox-triage** | Inbox routing |
+| weather | Forecasts via wttr.in |
+| healthcheck | Host security & risk |
+| skill-creator | Create/improve skills |
+| node-connect | Pairing diagnostics |
+| clawflow | Task orchestration |
+| clawflow-inbox-triage | Inbox routing |
 
 ---
 
-## 🚫 Blocked (Suspicious Flag — Not Installed)
-These were flagged by VirusTotal and skipped:
+## 🚫 Blocked (VirusTotal flagged)
 `qwen-image`, `expense-tracker`, `file-organizer-skill`, `filesystem`, `n8n-workflow-templates`, `pdf`, `github-cli`, `repo-analyzer`, `pkm`, `literature-search`, `calendar-manager`, `habit-flow-skill`, `openclaw-github-assistant`
 
 ---
 
-## 🚀 Quick Commands
-```bash
-clawhub search "topic"
-clawhub install <skill>
-clawhub update --all
-clawhub list
-```
-
----
-
-**Total: 47 ClawHub + 6 built-in = 53 capabilities**
+_⚠️ `clawhub list` reports 0 (known CLI bug). All skills installed and functional at `~/.openclaw/skills/`_
