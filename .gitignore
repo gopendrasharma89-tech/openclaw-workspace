@@ -1,0 +1,16 @@
+# OpenClaw internal
+.openclaw/
+*.log
+*.tmp
+
+# Secrets (should never be in workspace, but just in case)
+*.env
+.env.*
+secrets/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
