@@ -1,8 +1,8 @@
 # ⚡ Kavi's Skills Dashboard
 
-Complete inventory — 47 ClawHub marketplace + 6 built-in = 53 capabilities.
+Complete inventory — 47 ClawHub marketplace + 9 newly installed + 6 built-in = 62 capabilities.
 
-_Last updated: 2026-04-04 08:42 UTC_
+_Last updated: 2026-04-05 06:10 UTC_
 
 ---
 
@@ -118,7 +118,25 @@ _Last updated: 2026-04-04 08:42 UTC_
 
 ---
 
-## 🚫 Blocked (VirusTotal flagged)
+### 🌅 Daily Routines & Habits
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [morning-routine](../../.openclaw/skills/morning-routine/) | ClawHub | Morning startup ritual |
+| [night-routine](../../.openclaw/skills/night-routine/) | ClawHub | Night shutdown ritual |
+| [daily-review-ritual](../../.openclaw/skills/daily-review-ritual/) | ClawHub | End-of-day review + insights |
+| [habits](../../.openclaw/skills/habits/) | ClawHub | Habit tracking |
+| [gratitude-journal](../../.openclaw/skills/gratitude-journal/) | ClawHub | Daily gratitude logging |
+| [journal](../../.openclaw/skills/journal/) | ClawHub | Free-form journaling |
+
+### 📋 Planning & Productivity
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| [agent-autonomy-kit](../../.openclaw/skills/agent-autonomy-kit/) | ClawHub | Task queue + proactive heartbeat |
+| [planning-with-files](../../.openclaw/skills/planning-with-files/) | ClawHub | File-based planning workflow |
+| [project-tracker](../../.openclaw/skills/project-tracker/) | ClawHub | Multi-project status tracking |
+
+### 🚫 Blocked (VirusTotal flagged)
+`morning-briefing`
 `qwen-image`, `expense-tracker`, `file-organizer-skill`, `filesystem`, `n8n-workflow-templates`, `pdf`, `github-cli`, `repo-analyzer`, `pkm`, `literature-search`, `calendar-manager`, `habit-flow-skill`, `openclaw-github-assistant`
 
 ---

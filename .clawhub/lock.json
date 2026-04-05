@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "skills": {
+    "openclaw-self-improve": {
+      "version": "1.0.5",
+      "installedAt": 1775360541744
+    },
+    "agent-autonomy-kit": {
+      "version": "1.0.0",
+      "installedAt": 1775367940957
+    },
+    "daily-review-ritual": {
+      "version": "1.0.0",
+      "installedAt": 1775368110175
+    },
+    "morning-routine": {
+      "version": "1.0.0",
+      "installedAt": 1775369192648
+    },
+    "planning-with-files": {
+      "version": "2.26.1",
+      "installedAt": 1775369218287
+    },
+    "project-tracker": {
+      "version": "1.0.0",
+      "installedAt": 1775369244519
+    },
+    "gratitude-journal": {
+      "version": "1.0.0",
+      "installedAt": 1775369303532
+    },
+    "journal": {
+      "version": "1.0.0",
+      "installedAt": 1775369312434
+    },
+    "night-routine": {
+      "version": "1.0.0",
+      "installedAt": 1775369363232
+    },
+    "habits": {
+      "version": "1.0.0",
+      "installedAt": 1775369376278
+    }
+  }
+}
