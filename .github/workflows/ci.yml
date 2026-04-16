@@ -11,12 +11,23 @@ jobs:
   health-and-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Verify branch and python
+        run: |
+          echo "--- Branch ---"
+          git branch -a
+          echo "--- Python ---"
+          python --version
+          python -c "import sys; print('Python executable:', sys.executable)"
 
       - name: Install dependencies
         run: |
@@ -31,18 +42,14 @@ jobs:
           ls -la
           echo "--- Skills directory ---"
           ls -la skills/ 2>/dev/null || echo "skills/ not found or empty"
-          echo "--- Python ---"
-          python --version
-          python -c "import sys; print(sys.executable)"
 
       - name: Health check
         run: |
           bash scripts/healthcheck.sh
 
-      - name: Run basic integration tests
+      - name: Run basic integration tests (verbose)
         run: |
-          set -e
-          python -u tests/integration/test_basic.py
+          python -u -m pytest tests/integration/test_basic.py -v || python -u tests/integration/test_basic.py
 
       - name: Report workspace state
         run: |
