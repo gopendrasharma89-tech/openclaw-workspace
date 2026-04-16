@@ -5,11 +5,11 @@ import os
 import re
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, List
 
-# repo root is workspace directory
+# repo root
 BASE = Path("/root/.openclaw/workspace")
 TRACKER = BASE / "habits" / "tracker.json"
 REPORTS_DIR = BASE / "reports"
@@ -25,7 +25,15 @@ def run_git(*args) -> str:
 def load_tracker() -> Dict[str, Any]:
     if TRACKER.exists():
         return json.loads(TRACKER.read_text(encoding="utf-8"))
-    return {"sessionCount": 0, "totalLessons": 0, "mistakeCount": 0, "fixCount": 0, "ruleCount": 0, "lastLessons": []}
+    return {"sessionCount": 0, "totalLessons": 0, "mistakeCount": 0, "fixCount": 0, "ruleCount": 0, "lastLessons": [], "history": []}
+
+def parse_date(date_str: str) -> datetime:
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(date_str, fmt)
+        except ValueError:
+            continue
+    return datetime.now(timezone.utc)
 
 def recent_git_logs(limit=20) -> str:
     out = run_git("log", "--oneline", f"-{limit}")
@@ -38,8 +46,24 @@ def gather_habit_trends(tracker: Dict[str, Any]) -> str:
     lines.append(f"Mistakes recorded: {tracker.get('mistakeCount', 0)}")
     lines.append(f"Fixes recorded: {tracker.get('fixCount', 0)}")
     lines.append(f"Rules created: {tracker.get('ruleCount', 0)}")
+    # compute simple week-over-week deltas if history exists
+    history: List[Dict[str, Any]] = tracker.get("history", [])
+    if len(history) >= 2:
+        last = history[-1]
+        prev = history[-2]
+        d_sess = last.get("sessionCount", 0) - prev.get("sessionCount", 0)
+        d_lessons = last.get("totalLessons", 0) - prev.get("totalLessons", 0)
+        d_mistakes = last.get("mistakeCount", 0) - prev.get("mistakeCount", 0)
+        d_fixes = last.get("fixCount", 0) - prev.get("fixCount", 0)
+        lines.append("")
+        lines.append("Week-over-week deltas:")
+        lines.append(f"  Sessions:  {d_sess:+d}")
+        lines.append(f"  Lessons:   {d_lessons:+d}")
+        lines.append(f"  Mistakes:  {d_mistakes:+d}")
+        lines.append(f"  Fixes:     {d_fixes:+d}")
     recent = tracker.get("lastLessons", [])
     if recent:
+        lines.append("")
         lines.append("Recent lessons:")
         for entry in recent[:5]:
             text = entry.get("text", "").replace("\n", " ").strip()
@@ -47,6 +71,7 @@ def gather_habit_trends(tracker: Dict[str, Any]) -> str:
                 text = text[:77] + "..."
             lines.append(f"  - [{entry.get('kind','')}] {text}")
     else:
+        lines.append("")
         lines.append("No recent lessons recorded.")
     return "\n".join(lines)
 
