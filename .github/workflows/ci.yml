@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest check-jsonschema
+          pip install pytest check-jsonschema pyyaml
           # No project-level requirements yet
 
       - name: Debug workspace
@@ -45,6 +45,8 @@ jobs:
           ls -la skills/ 2>/dev/null || echo "skills/ not found or empty"
           echo "--- Schemas directory ---"
           ls -la schemas/ 2>/dev/null || echo "schemas/ not found or empty"
+          echo "--- OpenAPI spec ---"
+          ls -la openapi.yaml 2>/dev/null || echo "openapi.yaml not found"
 
       - name: Health check
         run: |
@@ -54,6 +56,24 @@ jobs:
         run: |
           check-jsonschema --schemafile schemas/health.json <(echo '{"data":{"status":"ok","uptimeSeconds":0,"timestamp":"2026-04-16T06:00:00Z"},"meta":{"requestId":"test","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
           check-jsonschema --schemafile schemas/error.json <(echo '{"error":{"code":"ERR_INVALID_REQUEST","message":"test"},"meta":{"requestId":"test","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
+
+      - name: Validate OpenAPI spec basic structure
+        run: |
+          python3 -c "
+          import yaml, sys, os
+          path = 'openapi.yaml'
+          if not os.path.exists(path):
+              print('ERROR: openapi.yaml missing')
+              sys.exit(1)
+          with open(path) as f:
+              doc = yaml.safe_load(f)
+          required_keys = ['openapi', 'info', 'paths']
+          for k in required_keys:
+              if k not in doc:
+                  print(f'ERROR: missing required key: {k}')
+                  sys.exit(1)
+          print('OpenAPI basic structure OK')
+          "
 
       - name: Run basic integration tests (verbose)
         run: |

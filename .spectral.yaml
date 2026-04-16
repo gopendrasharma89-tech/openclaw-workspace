@@ -1,0 +1,4 @@
+$schema: "https://stoplight.io/spectral/schema/v1.json"
+extends:
+  - "spectral:oas3"
+rules: { }
