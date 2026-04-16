@@ -30,8 +30,11 @@ def test_api_outline_exists():
     assert os.path.exists("/root/.openclaw/workspace/docs/API.md"), "API outline missing"
     with open("/root/.openclaw/workspace/docs/API.md") as f:
         content = f.read()
-        assert "Health API" in content or "health" in content.lower()
-        assert "Task Queue API" in content or "Task" in content
+        # Updated to match v0 schemas: endpoints and envelopes
+        assert "GET /health" in content or "health" in content.lower()
+        assert "GET /tasks" in content or "Task" in content
+        assert "POST /tasks" in content or "status" in content
+        assert "Common envelope" in content or "response envelope" in content.lower()
 
 if __name__ == "__main__":
     # Basic runner for manual execution
