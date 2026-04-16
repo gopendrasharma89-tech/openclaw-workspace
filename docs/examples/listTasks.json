@@ -1,0 +1,21 @@
+{
+  "path": "/tasks",
+  "method": "GET",
+  "operationId": "listTasks",
+  "requestExamples": {},
+  "responseExamples": {
+    "200": {
+      "tasks": [
+        {
+          "id": "task-uuid-1",
+          "status": "ready",
+          "title": "Example task",
+          "description": "An example task description.",
+          "createdAt": "2026-04-16T06:00:00Z",
+          "updatedAt": "2026-04-16T06:00:00Z"
+        }
+      ],
+      "_note": "matches TaskList schema"
+    }
+  }
+}
