@@ -5,10 +5,16 @@
   "requestExamples": {},
   "responseExamples": {
     "200": {
-      "status": "ok",
-      "uptimeSeconds": 123,
-      "timestamp": "2026-04-16T06:00:00Z",
-      "_note": "matches HealthResponse schema"
+      "data": {
+        "status": "ok",
+        "uptimeSeconds": 123,
+        "timestamp": "2026-04-16T06:00:00Z"
+      },
+      "meta": {
+        "requestId": "test-request-id",
+        "timestamp": "2026-04-16T06:00:00Z",
+        "version": "v0"
+      }
     }
   }
 }

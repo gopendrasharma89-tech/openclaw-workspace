@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate concrete example payloads from openapi.yaml for known endpoints.
+Produces envelope-wrapped examples per the API spec.
 """
 import yaml, json, os
 
@@ -70,6 +71,36 @@ def make_example(schema):
         return 0
     return {}
 
+def envelope_response(status_code, payload):
+    """Wrap a payload in the success envelope used by the API."""
+    return {
+        "data": payload,
+        "meta": {
+            "requestId": "test-request-id",
+            "timestamp": "2026-04-16T06:00:00Z",
+            "version": "v0",
+        },
+    }
+
+def health_payload():
+    return {
+        "status": "ok",
+        "uptimeSeconds": 123,
+        "timestamp": "2026-04-16T06:00:00Z",
+    }
+
+def tasks_payload():
+    return [
+        {
+            "id": "task-uuid-1",
+            "status": "ready",
+            "title": "Example task",
+            "description": "An example task description.",
+            "createdAt": "2026-04-16T06:00:00Z",
+            "updatedAt": "2026-04-16T06:00:00Z",
+        }
+    ]
+
 # Override: provide concrete examples per operationId
 def concrete_example(oid):
     examples = {
@@ -79,13 +110,8 @@ def concrete_example(oid):
             "operationId": "healthCheck",
             "requestExamples": {},
             "responseExamples": {
-                "200": {
-                    "status": "ok",
-                    "uptimeSeconds": 123,
-                    "timestamp": "2026-04-16T06:00:00Z",
-                    "_note": "matches HealthResponse schema"
-                }
-            }
+                "200": envelope_response(200, health_payload()),
+            },
         },
         "listTasks": {
             "path": "/tasks",
@@ -93,21 +119,9 @@ def concrete_example(oid):
             "operationId": "listTasks",
             "requestExamples": {},
             "responseExamples": {
-                "200": {
-                    "tasks": [
-                        {
-                            "id": "task-uuid-1",
-                            "status": "ready",
-                            "title": "Example task",
-                            "description": "An example task description.",
-                            "createdAt": "2026-04-16T06:00:00Z",
-                            "updatedAt": "2026-04-16T06:00:00Z"
-                        }
-                    ],
-                    "_note": "matches TaskList schema"
-                }
-            }
-        }
+                "200": envelope_response(200, {"tasks": tasks_payload()}),
+            },
+        },
     }
     return examples.get(oid)
 
@@ -118,7 +132,6 @@ for path_str, methods in paths.items():
         operation_id = spec.get("operationId")
         if not operation_id:
             continue
-        # Use concrete example if available, otherwise generate
         out = concrete_example(operation_id)
         if out:
             outfile = os.path.join(OUT_DIR, f"{operation_id}.json")
@@ -126,7 +139,7 @@ for path_str, methods in paths.items():
                 json.dump(out, f, indent=2)
             print(f"Generated {outfile}")
         else:
-            # fallback to generic generation
+            # fallback generic generation
             request_examples = {}
             response_examples = {}
             if "requestBody" in spec:
