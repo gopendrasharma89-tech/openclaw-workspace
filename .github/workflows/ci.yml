@@ -12,21 +12,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           # No project-level requirements yet
+
+      - name: Debug workspace
+        run: |
+          echo "--- Git status ---"
+          git status --short
+          echo "--- Files in workspace root ---"
+          ls -la
+          echo "--- Skills directory ---"
+          ls -la skills/ 2>/dev/null || echo "skills/ not found or empty"
+          echo "--- Python ---"
+          python --version
+          python -c "import sys; print(sys.executable)"
+
       - name: Health check
         run: |
           bash scripts/healthcheck.sh
+
       - name: Run basic integration tests
         run: |
           set -e
           python -u tests/integration/test_basic.py
+
       - name: Report workspace state
         run: |
           echo "Git status:"
