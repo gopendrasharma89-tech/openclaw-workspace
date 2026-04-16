@@ -16,16 +16,17 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install dependencies (if any)
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # No project-level requirements yet; install optional deps here if needed
+          # No project-level requirements yet
       - name: Health check
         run: |
-          bash /root/.openclaw/workspace/scripts/healthcheck.sh
+          bash scripts/healthcheck.sh
       - name: Run basic integration tests
         run: |
-          python3 /root/.openclaw/workspace/tests/integration/test_basic.py
+          set -e
+          python -u tests/integration/test_basic.py
       - name: Report workspace state
         run: |
           echo "Git status:"
