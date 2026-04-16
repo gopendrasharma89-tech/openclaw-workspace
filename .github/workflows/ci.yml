@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          pip install pytest check-jsonschema
           # No project-level requirements yet
 
       - name: Debug workspace
@@ -48,9 +48,14 @@ jobs:
         run: |
           bash scripts/healthcheck.sh
 
+      - name: Validate JSON schemas
+        run: |
+          check-jsonschema --schemafile schemas/health.json <(echo '{"data":{"status":"ok","uptimeSeconds":0,"timestamp":"2026-04-16T06:00:00Z"},"meta":{"requestId":"test","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
+          check-jsonschema --schemafile schemas/error.json <(echo '{"error":{"code":"ERR_INVALID_REQUEST","message":"test"},"meta":{"requestId":"test","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
+
       - name: Run basic integration tests (verbose)
         run: |
-          python -u -m pytest tests/integration/test_basic.py -v || python -u tests/integration/test_basic.py
+          python -m pytest tests/integration/test_basic.py -v
 
       - name: Report workspace state
         run: |
