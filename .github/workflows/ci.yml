@@ -43,6 +43,8 @@ jobs:
           ls -la
           echo "--- Skills directory ---"
           ls -la skills/ 2>/dev/null || echo "skills/ not found or empty"
+          echo "--- Schemas directory ---"
+          ls -la schemas/ 2>/dev/null || echo "schemas/ not found or empty"
 
       - name: Health check
         run: |
