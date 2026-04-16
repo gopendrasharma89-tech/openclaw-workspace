@@ -1,4 +1,7 @@
 import os
+import json
+
+import jsonschema
 
 def project_root():
     # Walk up from this file to repo root (where 'scripts/' exists)
@@ -15,6 +18,10 @@ def run_cmd(cmd):
     import subprocess
     r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
     return r.returncode, r.stdout, r.stderr
+
+def _load_schema(relpath):
+    with open(os.path.join(ROOT, relpath)) as f:
+        return json.load(f)
 
 def test_health():
     script = os.path.join(ROOT, "scripts", "healthcheck.sh")
@@ -38,3 +45,19 @@ def test_api_outline_exists():
         assert "get /tasks" in c or "task" in c
         assert "post /tasks" in c or "status" in c
         assert "envelope" in c
+
+def test_health_schema():
+    schema = _load_schema("schemas/health.json")
+    example = {
+        "data": {"status": "ok", "uptimeSeconds": 0, "timestamp": "2026-04-16T06:00:00Z"},
+        "meta": {"requestId": "test", "timestamp": "2026-04-16T06:00:00Z", "version": "v0"}
+    }
+    jsonschema.validate(instance=example, schema=schema)
+
+def test_error_schema():
+    schema = _load_schema("schemas/error.json")
+    example = {
+        "error": {"code": "ERR_INVALID_REQUEST", "message": "test"},
+        "meta": {"requestId": "test", "timestamp": "2026-04-16T06:00:00Z", "version": "v0"}
+    }
+    jsonschema.validate(instance=example, schema=schema)
