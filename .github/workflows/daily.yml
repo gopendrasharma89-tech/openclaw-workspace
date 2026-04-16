@@ -58,27 +58,22 @@ jobs:
             echo "No habit changes to commit."
           fi
 
-      - name: Weekly summary (Sundays)
-        if: github.event.schedule == '0 7 * * 0' || (github.event.schedule == '0 7 * * *' && needs.date.outputs.day == 'Sun')
+      - name: Weekly summary (Sunday 07:00 UTC)
+        if: github.event.schedule == '0 7 * * 0'
         run: |
-          echo "Weekly summary step - placeholder for future implementation"
+          python reports/weekly_summary.py
+          mkdir -p artifacts
+          cp reports/weekly_summary_*.md artifacts/
 
-  # Optional: separate weekly-report job
-  weekly_report:
-    runs-on: ubuntu-latest
-    if: github.repository == 'gopendrasharma89-tech/openclaw-workspace'
-    needs: maintenance
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Upload weekly summary artifact
+        if: github.event.schedule == '0 7 * * 0'
+        uses: actions/upload-artifact@v4
         with:
-          fetch-depth: 2
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate weekly summary
+          name: weekly-summary
+          path: artifacts/
+          retention-days: 30
+
+      - name: Report summary
         run: |
-          echo "Weekly summary not yet implemented — will aggregate habit logs and schema validation results."
-      - name: Commit summary if any
-        run: |
-          git config user.email "kavi@openclaw.local"
-          git config user.name "Kavi"
-          echo "No summary artifact produced this week." > /dev/null
+          echo "--- Daily scan summary ---"
+          python -m skills.self_reflection.cli report 2>&1 || true
