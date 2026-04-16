@@ -1,7 +1,7 @@
-import os, sys
+import os
 
 def project_root():
-    # Walk up from this file until we find the 'scripts' directory
+    # Walk up from this file to repo root (where 'scripts/' exists)
     path = os.path.abspath(__file__)
     while True:
         parent = os.path.dirname(path)
@@ -17,9 +17,9 @@ def run_cmd(cmd):
     return r.returncode, r.stdout, r.stderr
 
 def test_health():
-    p = os.path.join(ROOT, "scripts", "healthcheck.sh")
-    assert os.path.exists(p), f"missing: {p}"
-    rc, out, err = run_cmd(f"bash {p}")
+    script = os.path.join(ROOT, "scripts", "healthcheck.sh")
+    assert os.path.exists(script), f"missing: {script}"
+    rc, out, err = run_cmd(f"bash {script}")
     assert rc == 0, f"healthcheck failed: {err}"
 
 def test_skills_registered():
@@ -30,20 +30,11 @@ def test_skills_registered():
     assert len([l for l in out.strip().split("\n") if l]) > 0, "no skills"
 
 def test_api_outline_exists():
-    p = os.path.join(ROOT, "docs", "API.md")
-    assert os.path.exists(p), f"missing API.md: {p}"
-    with open(p) as f:
+    api_path = os.path.join(ROOT, "docs", "API.md")
+    assert os.path.exists(api_path), f"missing API.md: {api_path}"
+    with open(api_path) as f:
         c = f.read().lower()
         assert "get /health" in c or "health" in c
         assert "get /tasks" in c or "task" in c
         assert "post /tasks" in c or "status" in c
         assert "envelope" in c
-
-for name in [test_health, test_skills_registered, test_api_outline_exists]:
-    try:
-        name()
-        print(f"PASS: {name.__name__}")
-    except AssertionError as e:
-        print(f"FAIL: {name.__name__} — {e}")
-        sys.exit(1)
-print("All checks passed.")
