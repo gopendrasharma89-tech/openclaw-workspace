@@ -9,66 +9,84 @@ Define the initial API surface and contract expectations for the openclaw-worksp
 - Future maintainers
 
 ## Core API Contracts (v0)
-### 1. Workspace State API
-- Endpoint: internal/state
-- Purpose: Provide read-only access to critical workspace state (git status, current task, health).
-- Request: none (internal use)
-- Response fields: commit, branch, dirty, task, last_heartbeat
 
-### 2. Task Queue API (agent-autonomy-kit)
-- Purpose: Query and update work queue (ready, in-progress, done).
-- Actions:
-  - GET /tasks — list tasks with status
-  - POST /tasks/{id}/start — mark task in-progress
-  - POST /tasks/{id}/done — mark task complete
+### Common envelope
+All successful responses include:
+```json
+{ "data": { ... }, "meta": { "requestId": "uuid", "timestamp": "2026-04-16T06:00:00Z", "version": "v0" } }
+```
+Schema: `schemas/health.json`
 
-### 3. Skills Registry API
-- Purpose: Enumerate installed skills and metadata.
-- GET /skills — list skills with id, source, status
-- GET /skills/{id} — detail for a skill
+### Error envelope
+```json
+{
+  "error": {
+    "code": "ERR_INVALID_REQUEST | ERR_NOT_FOUND | ERR_INTERNAL",
+    "message": "human-readable description",
+    "details": { /* optional structured details */ }
+  },
+  "meta": { "requestId": "uuid", "timestamp": "...", "version": "v0" }
+}
+```
+Schema: `schemas/error.json`
+HTTP status codes: 200 OK, 400 Bad Request, 404 Not Found, 500 Internal Server Error.
 
-### 4. Health API
-- GET /health — return OK if core files present and git ok
-
-## Message/Event Contracts (for internal events)
-- task-started: { taskId, workerId, timestamp }
-- task-completed: { taskId, result, timestamp }
-- heartbeat: { at, status, issues[] }
-
-## API Schemas (v0)
 ### 1. GET /health
 - Request: none
 - Response 200:
   ```json
-  { "status": "ok", "uptime": 123, "timestamp": "2026-04-16T06:00:00Z" }
+  { "data": { "status": "ok", "uptimeSeconds": 123, "timestamp": "2026-04-16T06:00:00Z" }, "meta": { ... } }
   ```
 
 ### 2. GET /tasks
 - Request: none
 - Response 200:
   ```json
-  { "tasks": [ { "id": "uuid", "status": "ready|in-progress|done", "title": "string", "createdAt": "ISO8601" } ] }
+  { "data": { "tasks": [ {
+    "id": "uuid",
+    "status": "ready | in-progress | done",
+    "title": "string",
+    "description": "string",
+    "createdAt": "2026-04-16T06:00:00Z",
+    "updatedAt": "2026-04-16T06:00:00Z"
+  } ] }, "meta": { ... } }
   ```
 
 ### 3. POST /tasks/{id}/start
-- Request: none (internal trigger)
+- Request body: none (internal trigger)
 - Response 200:
   ```json
-  { "taskId": "uuid", "status": "in-progress", "startedAt": "ISO8601" }
+  { "data": {
+    "taskId": "uuid",
+    "status": "in-progress",
+    "startedAt": "2026-04-16T06:00:00Z",
+    "message": "string"
+  }, "meta": { ... } }
   ```
 
 ### 4. POST /tasks/{id}/done
-- Request: none (internal trigger)
+- Request body: none (internal trigger)
 - Response 200:
   ```json
-  { "taskId": "uuid", "status": "done", "result": "string|object", "completedAt": "ISO8601" }
+  { "data": {
+    "taskId": "uuid",
+    "status": "done",
+    "result": "string | object",
+    "completedAt": "2026-04-16T06:00:00Z"
+  }, "meta": { ... } }
   ```
 
 ### 5. GET /skills
 - Request: none
 - Response 200:
   ```json
-  { "skills": [ { "id": "string", "source": "clawhub|local", "status": "active|inactive" } ] }
+  { "data": { "skills": [ {
+    "id": "string",
+    "source": "clawhub | local",
+    "status": "active | inactive",
+    "name": "string",
+    "version": "string"
+  } ] }, "meta": { ... } }
   ```
 
 ## Auth & Security Notes
@@ -76,7 +94,7 @@ Define the initial API surface and contract expectations for the openclaw-worksp
 - Plan: add API key or token-based auth when external clients are introduced.
 - Transport: use HTTP for external clients; stdin/stdout or file events for internal agent communication.
 
-## Error Format (to be adopted)
+## Error Format
 - Standard error response:
   ```json
   { "error": { "code": "ERR_INVALID_REQUEST", "message": "human-readable description" } }
