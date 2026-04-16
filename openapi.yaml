@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: OpenClaw Workspace API
+  version: "0.1.0"
+  description: Minimal API for the openclaw-workspace.
+servers:
+  - url: http://localhost
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+  /tasks:
+    get:
+      summary: List tasks
+      operationId: listTasks
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskList'
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: object
+          required:
+            - status
+            - uptimeSeconds
+            - timestamp
+          properties:
+            status:
+              type: string
+              enum:
+                - ok
+            uptimeSeconds:
+              type: integer
+              minimum: 0
+            timestamp:
+              type: string
+              format: date-time
+        meta:
+          type: object
+          required:
+            - requestId
+            - timestamp
+            - version
+          properties:
+            requestId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+            version:
+              type: string
+      example:
+        data:
+          status: ok
+          uptimeSeconds: 123
+          timestamp: "2026-04-16T06:00:00Z"
+        meta:
+          requestId: req-123
+          timestamp: "2026-04-16T06:00:00Z"
+          version: v0
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - meta
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+          properties:
+            code:
+              type: string
+              enum:
+                - ERR_INVALID_REQUEST
+                - ERR_NOT_FOUND
+                - ERR_INTERNAL
+            message:
+              type: string
+        meta:
+          type: object
+          required:
+            - requestId
+            - timestamp
+            - version
+          properties:
+            requestId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+            version:
+              type: string
+      example:
+        error:
+          code: ERR_INVALID_REQUEST
+          message: "test"
+        meta:
+          requestId: req-456
+          timestamp: "2026-04-16T06:00:00Z"
+          version: v0
+    TaskList:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            required:
+              - id
+              - status
+              - title
+              - createdAt
+              - updatedAt
+            properties:
+              id:
+                type: string
+              status:
+                type: string
+                enum:
+                  - ready
+                  - in-progress
+                  - done
+              title:
+                type: string
+              description:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+        meta:
+          type: object
+          required:
+            - requestId
+            - timestamp
+            - version
+          properties:
+            requestId:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+            version:
+              type: string

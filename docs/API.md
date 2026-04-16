@@ -31,6 +31,10 @@ Schema: `schemas/health.json`
 Schema: `schemas/error.json`
 HTTP status codes: 200 OK, 400 Bad Request, 404 Not Found, 500 Internal Server Error.
 
+### OpenAPI Spec
+- A minimal OpenAPI 3.0 spec is published at `openapi.yaml`.
+- It describes the `/health` and `/tasks` endpoints and uses the JSON Schema definitions for request/response envelopes.
+
 ### 1. GET /health
 - Request: none
 - Response 200:
