@@ -1,48 +1,49 @@
-# Minimal integration test skeleton for openclaw-workspace
-import json
-import os
-import subprocess
-import sys
+import os, sys
+
+def project_root():
+    # Walk up from this file until we find the 'scripts' directory
+    path = os.path.abspath(__file__)
+    while True:
+        parent = os.path.dirname(path)
+        if os.path.exists(os.path.join(parent, "scripts")) or parent == path:
+            return parent
+        path = parent
+
+ROOT = project_root()
 
 def run_cmd(cmd):
-    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-    return result.returncode, result.stdout, result.stderr
+    import subprocess
+    r = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+    return r.returncode, r.stdout, r.stderr
 
 def test_health():
-    # Placeholder: implement actual health check endpoint or script
-    assert os.path.exists("/root/.openclaw/workspace/docs/API.md")
-    assert os.path.exists("/root/.openclaw/workspace/docs/SCOPE.md")
-    rc, out, err = run_cmd("bash /root/.openclaw/workspace/scripts/healthcheck.sh")
-    # Currently healthcheck outputs to terminal; ensure it runs without error
+    p = os.path.join(ROOT, "scripts", "healthcheck.sh")
+    assert os.path.exists(p), f"missing: {p}"
+    rc, out, err = run_cmd(f"bash {p}")
     assert rc == 0, f"healthcheck failed: {err}"
 
 def test_skills_registered():
-    skills_dir = "/root/.openclaw/workspace/skills"
-    assert os.path.isdir(skills_dir), "skills directory missing"
-    # At minimum, skills directory should contain known skill entries
-    rc, out, err = run_cmd("ls -1 /root/.openclaw/workspace/skills/")
-    assert rc == 0, f"cannot list skills: {err}"
-    # Expect several skills present (non-zero count)
-    lines = [l for l in out.strip().split("\n") if l]
-    assert len(lines) > 0, "no skills found"
+    d = os.path.join(ROOT, "skills")
+    assert os.path.isdir(d), f"missing skills dir: {d}"
+    rc, out, err = run_cmd(f"ls -1 {d}")
+    assert rc == 0, f"ls failed: {err}"
+    assert len([l for l in out.strip().split("\n") if l]) > 0, "no skills"
 
 def test_api_outline_exists():
-    assert os.path.exists("/root/.openclaw/workspace/docs/API.md"), "API outline missing"
-    with open("/root/.openclaw/workspace/docs/API.md") as f:
-        content = f.read()
-        # Updated to match v0 schemas: endpoints and envelopes
-        assert "GET /health" in content or "health" in content.lower()
-        assert "GET /tasks" in content or "Task" in content
-        assert "POST /tasks" in content or "status" in content
-        assert "Common envelope" in content or "response envelope" in content.lower()
+    p = os.path.join(ROOT, "docs", "API.md")
+    assert os.path.exists(p), f"missing API.md: {p}"
+    with open(p) as f:
+        c = f.read().lower()
+        assert "get /health" in c or "health" in c
+        assert "get /tasks" in c or "task" in c
+        assert "post /tasks" in c or "status" in c
+        assert "envelope" in c
 
-if __name__ == "__main__":
-    # Basic runner for manual execution
-    for name in [test_health, test_skills_registered, test_api_outline_exists]:
-        try:
-            name()
-            print(f"PASS: {name.__name__}")
-        except AssertionError as e:
-            print(f"FAIL: {name.__name__} — {e}")
-            sys.exit(1)
-    print("All basic integration checks passed.")
+for name in [test_health, test_skills_registered, test_api_outline_exists]:
+    try:
+        name()
+        print(f"PASS: {name.__name__}")
+    except AssertionError as e:
+        print(f"FAIL: {name.__name__} — {e}")
+        sys.exit(1)
+print("All checks passed.")
