@@ -1,0 +1,66 @@
+# Daily autonomous maintenance for openclaw-workspace
+name: Daily Self-Reflection & Maintenance
+
+on:
+  schedule:
+    # Every day at 07:00 UTC
+    - cron: "0 7 * * *"
+  workflow_dispatch:  # allow manual trigger
+
+jobs:
+  daily-maintenance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest check-jsonschema pyyaml
+
+      - name: Run Self-Reflection scan
+        run: |
+          python -m skills.self_reflection.cli scan
+
+      - name: Validate JSON schemas
+        run: |
+          check-jsonschema --schemafile schemas/health.json <(echo '{"data":{"status":"ok","uptimeSeconds":0,"timestamp":"2026-04-16T06:00:00Z"},"meta":{"requestId":"daily","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
+          check-jsonschema --schemafile schemas/error.json <(echo '{"error":{"code":"ERR_INVALID_REQUEST","message":"test"},"meta":{"requestId":"daily","timestamp":"2026-04-16T06:00:00Z","version":"v0"}}')
+
+      - name: Validate OpenAPI spec basic structure
+        run: |
+          python3 -c "
+          import yaml, os, json
+doc = yaml.safe_load(open('openapi.yaml'))
+assert 'openapi' in doc and 'info' in doc and 'paths' in doc, 'invalid openapi'
+print('OpenAPI structure OK')
+"
+
+      - name: Clean code and output
+        run: |
+          python -m skills.self_reflection.cli clean --target all --dry-run
+
+      - name: Commit habit state changes if any
+        run: |
+          git config user.email "kavi@openclaw.local"
+          git config user.name "Kavi"
+          git add habits/tracker.json 2>/dev/null || true
+          if ! git diff --cached --quiet 2>/dev/null; then
+            git commit -m "daily: update habit tracker" -m "Autonomous daily reflection update"
+            git push origin main
+          else
+            echo "No habit state changes to commit."
+          fi
+
+      - name: Report summary
+        run: |
+          echo "--- Daily scan summary ---"
+          python -m skills.self_reflection.cli report 2>&1 || true
