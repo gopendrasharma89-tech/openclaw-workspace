@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Health Response Schema",
+  "description": "Schema for the /health endpoint response (success envelope).",
+  "type": "object",
+  "required": ["data", "meta"],
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["status", "uptimeSeconds", "timestamp"],
+      "properties": {
+        "status": { "enum": ["ok"] },
+        "uptimeSeconds": { "type": "integer", "minimum": 0 },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "required": ["requestId", "timestamp", "version"],
+      "properties": {
+        "requestId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

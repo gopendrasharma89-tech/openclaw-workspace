@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Error Response Schema",
+  "description": "Schema for error envelope responses.",
+  "type": "object",
+  "required": ["error", "meta"],
+  "properties": {
+    "error": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "enum": ["ERR_INVALID_REQUEST", "ERR_NOT_FOUND", "ERR_INTERNAL"] },
+        "message": { "type": "string" },
+        "details": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "required": ["requestId", "timestamp", "version"],
+      "properties": {
+        "requestId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "version": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
