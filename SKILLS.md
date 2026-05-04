@@ -1,8 +1,8 @@
 # ⚡ Kavi's Skills Dashboard
 
-Complete inventory — 47 ClawHub marketplace + 9 newly installed + 6 built-in = 62 capabilities.
+Complete inventory — 47 ClawHub marketplace + 14 newly installed + 6 built-in + 12 workspace = **81 capabilities**.
 
-_Last updated: 2026-04-05 06:10 UTC_
+_Last updated: 2026-05-04 09:55 UTC_
 
 ---
 
@@ -142,3 +142,41 @@ _Last updated: 2026-04-05 06:10 UTC_
 ---
 
 _⚠️ `clawhub list` reports 0 (known CLI bug). All skills installed and functional at `~/.openclaw/skills/`_
+
+## 🔍 Deep Research (New 2026-05-04)
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| deep-research-executor | Workspace | Deep research with strict search protocols |
+| in-depth-research | Workspace | Exhaustive multi-source investigation |
+| multi-source-research | Workspace | Multi-source research synthesis |
+
+## 📰 News & Updates (New 2026-05-04)
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| news-summary | Workspace | News summarization |
+| tech-news | Workspace | Technology news updates |
+| ai-news-collectors | Workspace | AI news collection |
+| news-aggregator | Workspace | Multi-source news aggregation |
+
+## 💰 Finance (New 2026-05-04)
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| finance-skill | Workspace | Finance management |
+| finance-news | Workspace | Financial news briefings |
+| finance-analysis | Workspace | Financial analysis |
+| finance-tracker | Workspace | Finance tracking |
+
+## 🖼️ Image & Vision (New 2026-05-04)
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| image-generate | Workspace | Image generation |
+| image-vision | Workspace | Image analysis & vision |
+| image-utils | Workspace | Image utilities |
+
+## 🔐 Security & Monitoring (New 2026-05-04)
+| Skill | Source | Purpose |
+|-------|--------|---------|
+| security-scanner | Workspace | Security scanning |
+| security-audit | Workspace | Security auditing |
+| security-monitor | Workspace | Security monitoring |
+| agent-security-monitor | Workspace | Agent security monitoring |

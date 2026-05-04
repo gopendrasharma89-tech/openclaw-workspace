@@ -40,6 +40,254 @@
     "habits": {
       "version": "1.0.0",
       "installedAt": 1775369376278
+    },
+    "adaptive-reasoning": {
+      "version": "1.0.0",
+      "installedAt": 1777877216454
+    },
+    "afrexai-budget-planner": {
+      "version": "1.0.0",
+      "installedAt": 1777877222237
+    },
+    "afrexai-productivity-system": {
+      "version": "1.0.0",
+      "installedAt": 1777877228937
+    },
+    "calcurse": {
+      "version": "1.0.0",
+      "installedAt": 1777877239512
+    },
+    "camera": {
+      "version": "1.0.0",
+      "installedAt": 1777877246527
+    },
+    "claw-smart-context": {
+      "version": "1.0.0",
+      "installedAt": 1777877253111
+    },
+    "communication-skill": {
+      "version": "0.1.0",
+      "installedAt": 1777877258576
+    },
+    "content-writer": {
+      "version": "1.0.0",
+      "installedAt": 1777877264763
+    },
+    "deep-thinking": {
+      "version": "1.0.0",
+      "installedAt": 1777877270329
+    },
+    "docker-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1777877275376
+    },
+    "document-pro": {
+      "version": "1.0.0",
+      "installedAt": 1777877281421
+    },
+    "email-management": {
+      "version": "1.0.0",
+      "installedAt": 1777877287757
+    },
+    "encryption": {
+      "version": "1.0.0",
+      "installedAt": 1777877293973
+    },
+    "ffmpeg": {
+      "version": "1.0.0",
+      "installedAt": 1777877300316
+    },
+    "git-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1777877306694
+    },
+    "habit-tracker": {
+      "version": "1.0.0",
+      "installedAt": 1777877312939
+    },
+    "health": {
+      "version": "1.0.1",
+      "installedAt": 1777877320648
+    },
+    "human-writing": {
+      "version": "1.0.0",
+      "installedAt": 1777877327887
+    },
+    "intelligence-suite": {
+      "version": "1.0.3",
+      "installedAt": 1777877336079
+    },
+    "local-whisper": {
+      "version": "1.0.0",
+      "installedAt": 1777877342572
+    },
+    "markdown-formatter": {
+      "version": "1.0.0",
+      "installedAt": 1777877349260
+    },
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1777877355036
+    },
+    "obsidian": {
+      "version": "1.0.0",
+      "installedAt": 1777877362711
+    },
+    "openssl": {
+      "version": "1.0.0",
+      "installedAt": 1777877368173
+    },
+    "plan-my-day": {
+      "version": "1.0.0",
+      "installedAt": 1777877379674
+    },
+    "porteden-email": {
+      "version": "1.0.5",
+      "installedAt": 1777877386380
+    },
+    "proactivity": {
+      "version": "1.0.1",
+      "installedAt": 1777877394749
+    },
+    "screenshot": {
+      "version": "1.0.1",
+      "installedAt": 1777877401738
+    },
+    "social-intelligence": {
+      "version": "1.1.1",
+      "installedAt": 1777877412927
+    },
+    "spotify-player": {
+      "version": "1.0.0",
+      "installedAt": 1777877417571
+    },
+    "sql-toolkit": {
+      "version": "1.0.0",
+      "installedAt": 1777877422576
+    },
+    "sqlite": {
+      "version": "1.0.0",
+      "installedAt": 1777877428485
+    },
+    "ssh-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1777877433949
+    },
+    "system-info": {
+      "version": "1.0.0",
+      "installedAt": 1777877439660
+    },
+    "system-resource-monitor": {
+      "version": "1.0.0",
+      "installedAt": 1777877446919
+    },
+    "todoist-rs": {
+      "version": "1.0.1",
+      "installedAt": 1777877457568
+    },
+    "trello": {
+      "version": "1.0.0",
+      "installedAt": 1777877464689
+    },
+    "universal-translate": {
+      "version": "1.0.0",
+      "installedAt": 1777877470932
+    },
+    "web-scraping": {
+      "version": "1.0.0",
+      "installedAt": 1777877482211
+    },
+    "api-tester": {
+      "version": "1.0.0",
+      "installedAt": 1777877501763
+    },
+    "para-second-brain": {
+      "version": "2.0.1",
+      "installedAt": 1777877508481
+    },
+    "self-improving": {
+      "version": "1.2.16",
+      "installedAt": 1777877515898
+    },
+    "task-decomposer": {
+      "version": "1.0.0",
+      "installedAt": 1777877522572
+    },
+    "web-scraper-jina": {
+      "version": "1.0.1",
+      "installedAt": 1777877529403
+    },
+    "deep-research-executor": {
+      "version": "0.1.0",
+      "installedAt": 1777887822221
+    },
+    "in-depth-research": {
+      "version": "1.0.0",
+      "installedAt": 1777887828065
+    },
+    "multi-source-research": {
+      "version": "1.0.0",
+      "installedAt": 1777887833264
+    },
+    "news-summary": {
+      "version": "1.0.1",
+      "installedAt": 1777887839654
+    },
+    "tech-news": {
+      "version": "0.1.0",
+      "installedAt": 1777887851673
+    },
+    "ai-news-collectors-1-0-0": {
+      "version": "1.0.0",
+      "installedAt": 1777887857325
+    },
+    "news-aggregator": {
+      "version": "1.0.3",
+      "installedAt": 1777887863494
+    },
+    "finance-skill": {
+      "version": "0.1.2",
+      "installedAt": 1777887902641
+    },
+    "finance-news": {
+      "version": "1.0.1",
+      "installedAt": 1777887918010
+    },
+    "finance-analysis": {
+      "version": "1.0.0",
+      "installedAt": 1777887927183
+    },
+    "finance-tracker": {
+      "version": "2.0.0",
+      "installedAt": 1777887940312
+    },
+    "image-generate": {
+      "version": "1.0.0",
+      "installedAt": 1777888222961
+    },
+    "image-vision": {
+      "version": "1.0.0",
+      "installedAt": 1777888228296
+    },
+    "image-utils": {
+      "version": "1.3.0",
+      "installedAt": 1777888234702
+    },
+    "security-scanner": {
+      "version": "1.0.0",
+      "installedAt": 1777888245513
+    },
+    "security-audit": {
+      "version": "1.0.0",
+      "installedAt": 1777888255058
+    },
+    "security-monitor": {
+      "version": "1.0.0",
+      "installedAt": 1777888265273
+    },
+    "agent-security-monitor": {
+      "version": "1.1.0",
+      "installedAt": 1777888276172
     }
   }
 }

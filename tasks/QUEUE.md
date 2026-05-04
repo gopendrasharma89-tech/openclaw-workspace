@@ -9,7 +9,7 @@ Maintains ongoing work items. Statuses: ready | wip | blocked | done
 ## 🔴 Ready (can be picked up)
 
 ### High Priority
-- [ ] Set up skill summary documentation for new skills
+- [x] Set up skill summary documentation for new skills
 - [ ] Configure daily review ritual (cron job)
 
 ### Medium Priority
